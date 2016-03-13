@@ -170,6 +170,24 @@ function Final_Permutation(Text) {
 			Left.push(Text[i]);
 	}
 	Modified = Right.concat(Left);
+
+	var FinalPermtable =
+	[
+		40,    08,   48,   16,   56,   24,   64,   32,
+		39,    07,   47,   15,   55,   23,   63,   31,
+		38,    06,   46,   14,   54,   22,   62,   30,
+		37,    05,   45,   13,   53,   21,   61,   29,
+		36,    04,   44,   12,   52,   20,   60,   28,
+		35,    03,   43,   11,   51,   19,   59,   27,
+		34,    02,   42,   10,   50,   18,   58,   26,
+		33,    01,   41,   09,   49,   17,   57,   25
+	];
+
+	var ModifiedPT = [];
+	for (var i = 0; i < FinalPermtable.length; i++) {
+		ModifiedPT.push(Text[FinalPermtable[i] - 1]);
+	}
+	return ModifiedPT;
 }
 
 // Sequence
