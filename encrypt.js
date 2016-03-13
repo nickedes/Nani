@@ -90,6 +90,7 @@ function RoundKeyCompress(CD) {
 
 function RightPtExpansion(Right) {
 	// Right - Right part of the Plaintext {Ri} (32 bits)
+	// Expanding The RPT from 32 to 48 bits.
 	var ExpansionTable =
 	[
 		32,   01,   02,   03,   04,   05,
@@ -157,6 +158,25 @@ function Round(Plaintext, Key) {
 	return ModifiedPT;
 }
 
+function Final_Permutation(Text) {
+	// Swap two blocks (Left, Right) and apply final permutation
+	var Left = [], Right = [];
+	var Modified = [];
+	for (var i = 0; i < Text.length; i++) {
+		// Swapping ;) Left nd Right
+		if(i < Text.length/2)
+			Right.push(Text[i]);
+		else
+			Left.push(Text[i]);
+	}
+	Modified = Right.concat(Left);
+}
+
+// Sequence
+// 1. Initial Permu..
+// 2. 16 Rounds are performed on Plaintext with corresponding key of each Round.
+// 3. Swap the left right parts after 16th round.
+// 4. Do Final Permu..
 var Plaintext = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,1,0,1,0,0,0,1,0,1,0,1,1,0,0,1,1,1,1,0,0,0,1,0,0,1,1,0,1,0,1,0,1,1,1,1,0,0,1,1,0,1,1,1,1,0,1,1,1,1];
 Plaintext = Initial_Permutation(Plaintext)
 console.log(Plaintext);
