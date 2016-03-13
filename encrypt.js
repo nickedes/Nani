@@ -1,4 +1,7 @@
+// Refering - http://page.math.tu-berlin.de/~kant/teaching/hess/krypto-ws2006/des.htm
+
 function Initial_Permutation(Plaintext) {
+	// Plaintext is 64 bits long
 	var InitialPermTable = 
 	[
 		58,  50,  42,  34,  26,  18,  10,  2,
