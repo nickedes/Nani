@@ -36,7 +36,35 @@ function keyGen(key) {
 	];
 	var Modified = new Array();
 	for (var i = 0; i < ParityDropTable.length; i++) {
-		var key_element = key[ParityDropTable[i]];
+		var key_element = key[ParityDropTable[i] - 1];
+		Modified.push(key_element);
+	}
+	return Modified;
+}
+
+function RoundKey(CD, num) {
+	// CD - CD of Previous Round (of 56 bits)
+	// num - Round Number
+	
+}
+
+function RoundKeyCompress(CD) {
+	// CD - CD of the Round (of 56 bits) 
+	// Compress to 48 bits Key
+	var KeyCompressionTable =
+	[
+		14,   17,   11,   24,   01,   05,
+		03,   28,   15,   06,   21,   10,
+		23,   19,   12,   04,   26,   08,
+		16,   07,   27,   20,   13,   02,
+		41,   52,   31,   37,   47,   55,
+		30,   40,   51,   45,   33,   48,
+		44,   49,   39,   56,   34,   53,
+		46,   42,   50,   36,   29,   32
+	];
+	var Modified = new Array();
+	for (var i = 0; i < KeyCompressionTable.length; i++) {
+		var key_element = CD[KeyCompressionTable[i] - 1];
 		Modified.push(key_element);
 	}
 	return Modified;
