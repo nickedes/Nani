@@ -13,7 +13,7 @@ function Initial_Permutation(Plaintext) {
 		61,  53,  45,  37,  29,  21,  13,  5,
 		63,  55,  47,  39,  31,  23,  15,  7
 	];
-	var Modified = new Array();
+	var Modified = [];
 	for (var i = 0; i < Plaintext.length; i++) {
 		Modified.push(Plaintext[InitialPermTable[i] - 1])
 	}
@@ -34,7 +34,7 @@ function keyGen(key) {
 		14,   06,   61,   53,   45,   37,   29,
 		21,   13,   05,   28,   20,   12,   04
 	];
-	var Modified = new Array();
+	var Modified = [];
 	for (var i = 0; i < ParityDropTable.length; i++) {
 		var key_element = key[ParityDropTable[i] - 1];
 		Modified.push(key_element);
@@ -46,7 +46,7 @@ function RoundKey(CD, num) {
 	// CD - CD of Previous Round (of 56 bits)
 	// num - Round Number
 	// Returns the Key for the Round(Before Compression)
-	next_CD = new Array();
+	next_CD = [];
 	if(num == 1 || num == 2 || num == 9 || num == 16)
 	{
 		// shift by 1
@@ -80,7 +80,7 @@ function RoundKeyCompress(CD) {
 		44,   49,   39,   56,   34,   53,
 		46,   42,   50,   36,   29,   32
 	];
-	var Modified = new Array();
+	var Modified = [];
 	for (var i = 0; i < KeyCompressionTable.length; i++) {
 		var key_element = CD[KeyCompressionTable[i] - 1];
 		Modified.push(key_element);
