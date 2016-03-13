@@ -45,7 +45,25 @@ function keyGen(key) {
 function RoundKey(CD, num) {
 	// CD - CD of Previous Round (of 56 bits)
 	// num - Round Number
-	
+	// Returns the Key for the Round(Before Compression)
+	next_CD = new Array();
+	if(num == 1 || num == 2 || num == 9 || num == 16)
+	{
+		// shift by 1
+		for (var i = 1; i < CD.length; i++) {
+			next_CD.push(CD[i]);
+		}
+		next_CD.push(CD[0]);
+	}
+	else
+	{
+		// shift by 2
+		for (var i = 2; i < CD.length; i++) {
+			next_CD.push(CD[i]);
+		}
+		next_CD.push(CD[0], CD[1]);
+	}
+	return next_CD;
 }
 
 function RoundKeyCompress(CD) {
