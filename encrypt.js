@@ -109,6 +109,27 @@ function RightPtExpansion(Right) {
 	return ExpandedText;
 }
 
+function Permute(RightPT) {
+	// RightPT - Right Plaintext (of 32 bits)
+	var Permutation =
+	[
+		16,  07,  20,  21,
+		29,  12,  28,  17,
+		01,  15,  23,  26,
+		05,  18,  31,  10,
+		02,  08,  24,  14,
+		32,  27,  03,  09,
+		19,  13,  30,  06,
+		22,  11,  04,  25
+	];
+
+	var Modified = [];
+	for (var i = 0; i < Permutation.length; i++) {
+		Modified.push(Permutation[RightPT[i] - 1]);
+	}
+	return Modified;
+}
+
 function Round(Plaintext, Key) {
 	// Left - Left Part of the Plaintext
 	// Right - Right Part of the Plaintext
