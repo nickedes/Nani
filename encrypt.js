@@ -109,6 +109,33 @@ function RightPtExpansion(Right) {
 	return ExpandedText;
 }
 
+function Round(Plaintext, Key) {
+	// Left - Left Part of the Plaintext
+	// Right - Right Part of the Plaintext
+	// Key - Key of the Round (48 bits)
+	var Left = [], Right = [];
+	for (var i = 0; i < Plaintext.length; i++) {
+		if(i < Plaintext.length/2)
+			Left.push(Plaintext[i]);
+		else
+			Right.push(Plaintext[i]);
+	}
+	ExpandedRPT = RightPtExpansion(Right);
+	for (var i = 0; i < ExpandedRPT.length; i++) {
+		ExpandedRPT[i] = ExpandedRPT ^ Key[i];
+	}
+	// TODO: Sbox Compression step
+	// CompressRPT = Sbox(ExpandedRPT)
+	CompressRPT = Permute(CompressRPT)
+	for (var i = 0; i < CompressRPT.length; i++) {
+		CompressRPT[i] = CompressRPT ^ Left[i];
+	}
+	Left = Right;
+	var ModifiedPT = [];
+	ModifiedPT = Left.concat(CompressRPT);
+	return ModifiedPT;
+}
+
 var Plaintext = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,1,0,1,0,0,0,1,0,1,0,1,1,0,0,1,1,1,1,0,0,0,1,0,0,1,1,0,1,0,1,0,1,1,1,1,0,0,1,1,0,1,1,1,1,0,1,1,1,1];
 Plaintext = Initial_Permutation(Plaintext)
 console.log(Plaintext);
