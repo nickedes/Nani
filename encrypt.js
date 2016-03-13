@@ -88,6 +88,27 @@ function RoundKeyCompress(CD) {
 	return Modified;
 }
 
+function RightPtExpansion(Right) {
+	// Right - Right part of the Plaintext {Ri} (32 bits)
+	var ExpansionTable =
+	[
+		32,   01,   02,   03,   04,   05,
+		04,   05,   06,   07,   08,   09,
+		08,   09,   10,   11,   12,   13,
+		12,   13,   14,   15,   16,   17,
+		16,   17,   18,   19,   20,   21,
+		20,   21,   22,   23,   24,   25,
+		24,   25,   26,   27,   28,   29,
+		28,   29,   30,   31,   32,   01
+	];
+	var ExpandedText = [];
+	for (var i = 0; i < ExpansionTable.length; i++) {
+		var text = ExpandedText[ExpansionTable[i] - 1];
+		ExpandedText.push(text);
+	}
+	return ExpandedText;
+}
+
 var Plaintext = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,1,0,1,0,0,0,1,0,1,0,1,1,0,0,1,1,1,1,0,0,0,1,0,0,1,1,0,1,0,1,0,1,1,1,1,0,0,1,1,0,1,1,1,1,0,1,1,1,1];
 Plaintext = Initial_Permutation(Plaintext)
 console.log(Plaintext);
